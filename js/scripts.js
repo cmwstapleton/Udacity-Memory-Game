@@ -13,7 +13,7 @@ let players = [
   'raheem-sterling'
   ];
 let matches = [];
-let deck = $('.deck');
+let deck = $(".deck");
 let moves = 0;
 let rating = 0;
 let totalClicks = 0;
@@ -37,20 +37,20 @@ function shuffle(array) {
    return array;
 }
 
-// Empty an array
+// Quickly empty an existing array
 
 function empty(array) {
   array.length = 0;
 }
 
-// Click Counter
+// Record clicks by storing each new one in a variable and update page html with that figure
 
 function clickCounter() {
   totalClicks += 1;
   $("#totalmoves").html(totalClicks);
 }
 
-// Timer
+// Record the length of time the game is played in seconds
 
 function timer() {
   secondCount += 1;
@@ -58,11 +58,11 @@ function timer() {
   timerPtr = setTimeout(timer, 1000);
 }
 
-// Stop the game
+// Allow the game to be stopped by
 
 function currentGameEnd() {
-  $('.stopgame').click(function() {
-    modalWindowOpen('restarted');
+  $(".stopgame").click(function() {
+    modalWindowOpen("restarted");
     clearTimeout(timerPtr);
     rating = 0;
     secondCount = 0;
@@ -96,8 +96,8 @@ function currentGameEnd() {
      }
      else {
        empty(matches);
-       $(".card.show").removeClass('flipInY');
-       $(".card.show").addClass('shake');
+       $(".card.show").removeClass("flipInY");
+       $(".card.show").addClass("shake");
        $(".card.show").delay(700).queue(function(){
             // Disable and restore click from https://stackoverflow.com/questions/1263042/how-to-temporarily-disable-a-click-handler-in-jquery
             $(this).removeClass("show shake").css("pointer-events", "auto").dequeue();
@@ -124,8 +124,8 @@ function starRating(clicks) {
 // Open Model Window
 
 function modalWindowOpen(status) {
-  $('.modal-wrapper').addClass('active');
-  if ( status === 'restarted') {
+  $(".modal-wrapper").addClass("active");
+  if ( status === "restarted") {
     $(".modal-inner").html('<h3>Did you score an own goal?</h3>' +
       '<p>Don\'t dispair, unlike normal football matches (not including FIFA 18) you can try again and restart.</p>' +
       '<a href="#" class="restartgame">Restart Game</a>');
@@ -148,13 +148,13 @@ function modalWindowOpen(status) {
 // Close Model Window
 
 function modalWindowClose() {
-  $('.modal-wrapper').removeClass('active');
+  $(".modal-wrapper").removeClass("active");
 }
 
 // Check to see all cards have been flipped
 
 function gameComplete() {
-  let cardMatches = $('.open').length
+  let cardMatches = $(".open").length
   if ( cardMatches === 16 ) {
     modalWindowOpen();
     clearTimeout(timerPtr);
@@ -162,19 +162,16 @@ function gameComplete() {
     totalClicks = 0;
     rating = 0;
   }
-  else {
-    console.log( cardMatches + ' Matched');
-  }
 }
 
 // Restart the game
 
 function restartGame() {
-  $('.restartgame').click(function() {
+  $(".restartgame").click(function() {
     deck.empty();
     empty(matches);
-    $('#totalmoves').html('0');
-    $('#timer').html('0');
+    $("#totalmoves").html("0");
+    $("#timer").html("0");
     let moves = 0;
     let totalClicks = 0;
     modalWindowClose();
