@@ -1,0 +1,206 @@
+/* Fonts */
+
+/* Font sourced from https://github.com/HashemKhalifa/dusha-font */
+
+@font-face {
+    font-family: 'Dusha V5';
+    src: url('../fonts/DushaV5-Regular.woff2') format('woff2'),
+        url('../fonts/DushaV5-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* General */
+
+body {
+  background: #b30609 url(../img/page-bg.jpg) repeat top center;
+  font-family: 'Dusha V5', sans-serif;
+  font-size: 16px;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  font-size: 3.5em;
+  text-transform: uppercase;
+  font-weight: normal;
+  margin-bottom: 0;
+  color: white;
+}
+
+h2 {
+  margin-top: 0;
+  font-weight: normal;
+  color: white;
+}
+
+h3 {
+  font-size: 2em;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+#statsbar {
+  display: block;
+  overflow: hidden;
+  margin: 20px auto 20px auto;
+  width: 600px;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+#totalmoves,
+#timer {
+  display: block;
+  float: left;
+  height: 60px;
+  min-width: 80px;
+  font-size: 1.6em;
+  line-height: 60px;
+  text-align: right;
+  color: white;
+  padding-right: 50px;
+}
+
+#totalmoves {
+  min-width: 40px;
+  margin-right: 20px;
+  background: url('../img/mouse.png') no-repeat center right;
+}
+#timer {
+  background: url('../img/timer.png') no-repeat center right;
+}
+
+/* Deck and Cards */
+
+.deck {
+  display: block;
+  overflow: hidden;
+  width: 600px;
+  padding: 10px;
+  margin: 0 auto;
+  background-image: url(../img/deck-bg.png);
+  background-position: center;
+  background-repeat: repeat;
+  list-style-type: none;
+  border-radius: 10px;
+}
+
+.card {
+  display: block;
+  overflow: hidden;
+  float: left;
+  width: 140px;
+  height: 140px;
+  padding: 0;
+  margin: 5px;
+  border-radius: 5px;
+  background: url(../img/england-badge.png) no-repeat center;
+  cursor: pointer;
+}
+
+.card > img {
+  display: none;
+}
+
+.card.open > img {
+  display: block;
+}
+
+.card.show > img {
+  display: block;
+}
+
+/* Modal */
+
+.modal-wrapper {
+  display: none;
+
+}
+
+.modal-wrapper.active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-inner {
+  background: white;
+  border-radius: 10px;
+  width: 350px;
+  height: 280px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+}
+
+
+/* Ratings */
+
+ul.rating {
+  display: block;
+  clear: both;
+  list-style-type: none;
+  margin: 0 auto 20px auto;
+  padding: 0;
+  width: 180px;
+  height: 60px;
+}
+
+li.star {
+  display: block;
+  float: left;
+  background: url(../img/star-gray.png) no-repeat center;
+  width: 60px;
+  height: 60px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+ul.stars-1 li:first-child{
+  background: url(../img/star.png) no-repeat center;
+}
+
+ul.stars-2 li:nth-child(-n+2){
+  background: url(../img/star.png) no-repeat center
+}
+
+ul.stars-3 li:nth-child(-n+3){
+  background: url(../img/star.png) no-repeat center
+}
+
+/* Buttons */
+
+.stopgame {
+  margin: 10px 10px 0 0;
+  float: right;
+  font-size: 1.3em;
+  text-align: center;
+  display: inline-block;
+  background: #0f4583;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+a.restartgame {
+  font-size: 1.3em;
+  text-align: center;
+  display: inline-block;
+  background: #0f4583;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
