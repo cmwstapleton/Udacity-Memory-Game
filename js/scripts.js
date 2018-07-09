@@ -58,7 +58,7 @@ function timer() {
   timerPtr = setTimeout(timer, 1000);
 }
 
-// Allow the game to be stopped by
+// Allow the game to be stopped by the user and clear ratings, timer and click count
 
 function currentGameEnd() {
   $(".stopgame").click(function() {
@@ -70,7 +70,7 @@ function currentGameEnd() {
   });
 }
 
- // Create action for when card is clicked
+ // Click a card and apply CSS to reveal it. Also add the players name to the matches array. Finally initiat the cardCheck() function to check if the card matches.
 
  function cardClick() {
    $( ".card" ).click(function() {
@@ -84,7 +84,7 @@ function currentGameEnd() {
    });
  }
 
-// Check to see cards match or not
+// Check to see cards match or not. If two items are found in the matches array then complete checks to see if they match.
 
  function cardCheck() {
    if (matches.length === 2 ) {
@@ -107,7 +107,7 @@ function currentGameEnd() {
    }
  }
 
- // Set star rating
+ // Set star rating based on number of clicks/moves
 
 function starRating(clicks) {
   if ( clicks <= 32 ) {
@@ -121,7 +121,7 @@ function starRating(clicks) {
   }
 }
 
-// Open Model Window
+// Open Model Window based on it's status. The first modal is if a user restarts the game, the second is if a user finishes the game successfully.
 
 function modalWindowOpen(status) {
   $(".modal-wrapper").addClass("active");
@@ -151,7 +151,7 @@ function modalWindowClose() {
   $(".modal-wrapper").removeClass("active");
 }
 
-// Check to see all cards have been flipped
+// Check to see if the game is finished, based on whether all cards have been flipped
 
 function gameComplete() {
   let cardMatches = $(".open").length
@@ -164,7 +164,7 @@ function gameComplete() {
   }
 }
 
-// Restart the game
+// Restart the game by clearing the board, resetting the move count and timer. Close any open modals and start the game up again.
 
 function restartGame() {
   $(".restartgame").click(function() {
