@@ -21,3 +21,11 @@ By completing the game in:
 48 clicks or less you will earn a 2 star rating
 
 Any more than that and you'll only be rewarded with 1 star
+
+## Built With
+
+* [animate.css](https://github.com/daneden/animate.css - Used to animate cards
+
+## Authors
+
+* **Chris Stapleton** - [cmwstapleton](https://github.com/cmwstapleton)
