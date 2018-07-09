@@ -24,7 +24,7 @@ Any more than that and you'll only be rewarded with 1 star
 
 ## Built With
 
-* [animate.css](https://github.com/daneden/animate.css - Used to animate cards
+* [animate.css](https://github.com/daneden/animate.css) - Used to animate cards
 
 ## Authors
 
