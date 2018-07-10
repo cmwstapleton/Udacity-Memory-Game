@@ -19,6 +19,7 @@ let rating = 0;
 let totalClicks = 0;
 let timerPtr;
 let secondCount = 0;
+let firstClick = false;
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -58,23 +59,30 @@ function timer() {
   timerPtr = setTimeout(timer, 1000);
 }
 
-// Allow the game to be stopped by the user and clear ratings, timer and click count
 
-function currentGameEnd() {
-  $(".stopgame").click(function() {
-    modalWindowOpen("restarted");
-    clearTimeout(timerPtr);
-    rating = 0;
-    secondCount = 0;
-    totalClicks = 0;
-  });
+// Set star rating based on number of clicks/moves
+
+function starRating(clicks) {
+ if ( clicks <= 32 ) {
+   rating = 3;
+ }
+ else if ( clicks <= 48 ) {
+   rating = 2;
+ }
+ else {
+   rating = 1;
+ }
 }
+
+
 
  // Click a card and apply CSS to reveal it. Also add the players name to the matches array. Finally initiat the cardCheck() function to check if the card matches.
 
  function cardClick() {
    $( ".card" ).click(function() {
      clickCounter();
+     starRating(totalClicks);
+     $("#statsrating").removeClass("stars-1 stars-2 stars-3").addClass("stars-" + rating);
      $( this ).addClass("show flipInY");
      // Disable and restore click from https://stackoverflow.com/questions/1263042/how-to-temporarily-disable-a-click-handler-in-jquery
      $(this).css("pointer-events", "none");
@@ -82,6 +90,7 @@ function currentGameEnd() {
      matches.push(playerName);
      cardCheck();
    });
+
  }
 
 // Check to see cards match or not. If two items are found in the matches array then complete checks to see if they match.
@@ -106,20 +115,6 @@ function currentGameEnd() {
      }
    }
  }
-
- // Set star rating based on number of clicks/moves
-
-function starRating(clicks) {
-  if ( clicks <= 32 ) {
-    rating += 3;
-  }
-  else if ( clicks <= 48 ) {
-    rating += 2;
-  }
-  else {
-    rating += 1;
-  }
-}
 
 // Open Model Window based on it's status. The first modal is if a user restarts the game, the second is if a user finishes the game successfully.
 
@@ -149,6 +144,7 @@ function modalWindowOpen(status) {
 
 function modalWindowClose() {
   $(".modal-wrapper").removeClass("active");
+  let totalClicks = 0;
 }
 
 // Check to see if the game is finished, based on whether all cards have been flipped
@@ -158,11 +154,25 @@ function gameComplete() {
   if ( cardMatches === 16 ) {
     modalWindowOpen();
     clearTimeout(timerPtr);
+    rating = 0;
     secondCount = 0;
     totalClicks = 0;
-    rating = 0;
   }
 }
+
+// Allow the game to be stopped by the user and clear ratings, timer and click count
+
+function currentGameEnd() {
+  $(".stopgame").click(function() {
+    modalWindowOpen("restarted");
+    clearTimeout(timerPtr);
+    firstClick = false;
+    rating = 0;
+    secondCount = 0;
+    totalClicks = 0;
+  });
+}
+
 
 // Restart the game by clearing the board, resetting the move count and timer. Close any open modals and start the game up again.
 
@@ -172,11 +182,25 @@ function restartGame() {
     empty(matches);
     $("#totalmoves").html("0");
     $("#timer").html("0");
+
     let moves = 0;
-    let totalClicks = 0;
     modalWindowClose();
     intiGame();
   });
+}
+
+function clickStatus() {
+  let firstClick = false;
+  $( ".card" ).click(function() {
+    if ( firstClick === false ) {
+      console.log("status changed to true");
+      firstClick = true;
+      timerPtr = setTimeout(timer, 1000);
+    }
+    else {
+      console.log("status remains false");
+    }
+  })
 }
 
 // Initiat the game
@@ -187,8 +211,8 @@ function intiGame() {
   for (let i = 0; i < playerlist.length; i++) {
 		deck.append($('<li class="card animated" playername="' + playerlist[i] + '"><img src="img/cards/' + playerlist[i] + '.jpg"></li>'))
 	}
-  timerPtr = setTimeout(timer, 1000);
   cardClick();
+  clickStatus();
 }
 
 // Start the game
