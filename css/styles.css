@@ -58,7 +58,7 @@ p {
   display: block;
   float: left;
   height: 60px;
-  min-width: 80px;
+  min-width: 60px;
   font-size: 1.6em;
   line-height: 60px;
   text-align: right;
@@ -68,11 +68,19 @@ p {
 
 #totalmoves {
   min-width: 40px;
-  margin-right: 20px;
   background: url('../img/mouse.png') no-repeat center right;
 }
 #timer {
   background: url('../img/timer.png') no-repeat center right;
+  margin-right: 20px;
+}
+
+#statsbar > .rating {
+  float: left;
+  clear: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
 }
 
 /* Deck and Cards */
