@@ -74,8 +74,6 @@ function starRating(clicks) {
  }
 }
 
-
-
  // Click a card and apply CSS to reveal it. Also add the players name to the matches array. Finally initiat the cardCheck() function to check if the card matches.
 
  function cardClick() {
@@ -90,7 +88,6 @@ function starRating(clicks) {
      matches.push(playerName);
      cardCheck();
    });
-
  }
 
 // Check to see cards match or not. If two items are found in the matches array then complete checks to see if they match.
@@ -135,7 +132,6 @@ function modalWindowOpen(status) {
        <li class="star">Three Star</li>\
        </ul>\
        <a href="#" class="restartgame">Restart Game</a>');
-
   }
   restartGame();
 }
@@ -173,7 +169,6 @@ function currentGameEnd() {
   });
 }
 
-
 // Restart the game by clearing the board, resetting the move count and timer. Close any open modals and start the game up again.
 
 function restartGame() {
@@ -182,7 +177,6 @@ function restartGame() {
     empty(matches);
     $("#totalmoves").html("0");
     $("#timer").html("0");
-
     let moves = 0;
     modalWindowClose();
     intiGame();
